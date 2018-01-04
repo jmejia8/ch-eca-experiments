@@ -1,8 +1,13 @@
 using Metaheuristics
 using CEC17
 
-function fitnessFunc(x)
+const NFUNS = 28
+const NRUNS = 25
+
+function fitnessFunc(x, func_num = 1)
     f, g, h = cec17_test_COP(x, func_num)
+
+    return f + abs(sum(g)) + abs(sum(h))
 end
 
 function runn(func_num)
@@ -23,10 +28,10 @@ function runn(func_num)
 end
 
 function main()
-    nfuns = 28
+    
     nruns = 1
     
-    for f = 1:nfuns
+    for f = 1:NFUNS
         errores = zeros(nruns)
         
         for r = 1:nruns
